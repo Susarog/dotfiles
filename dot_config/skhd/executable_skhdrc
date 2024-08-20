@@ -1,0 +1,70 @@
+# change window focus within space
+alt - j : yabai -m window --focus south
+alt - k : yabai -m window --focus north
+alt - h : yabai -m window --focus west
+alt - l : yabai -m window --focus east
+
+#change between external displays 
+shift + alt - 1  : yabai -m display --focus 1
+shift + alt - 2  : yabai -m display --focus 2
+shift + alt - 3  : yabai -m display --focus 3
+
+ctrl + alt - x  : yabai -m window --display recent && yabai -m display --focus recent
+ctrl + alt - z  : yabai -m window --display prev && yabai -m display --focus prev
+ctrl + alt - c  : yabai -m window --display next && yabai -m display --focus next
+ctrl + alt - 1  : yabai -m window --display 1 && yabai -m display --focus 1
+ctrl + alt - 2  : yabai -m window --display 2 && yabai -m display --focus 2
+ctrl + alt - 3  : yabai -m window --display 3 && yabai -m display --focus 3
+
+# rotate layout clockwise
+shift + alt - r : yabai -m space --rotate 270
+
+# flip along y-axis
+shift + alt - y : yabai -m space --mirror y-axis
+
+# flip along x-axis
+shift + alt - x : yabai -m space --mirror x-axis
+
+# toggle window float
+shift + alt - t : yabai -m window --toggle float --grid 4:4:1:1:2:2
+
+# maximize a window
+shift + alt - m : yabai -m window --toggle zoom-fullscreen
+
+# balance out tree of windows (resize to occupy same area)
+shift + alt - e : yabai -m space --balance
+
+# stop/start/restart yabai
+ctrl + alt - q : yabai --stop-service
+ctrl + alt - s : yabai --start-service
+ctrl + alt - r : yabai --restart-service
+
+# create new terminal
+ctrl + cmd - t : alacritty
+
+# switch between desktop environments depending on the current display
+alt - 1 : yabai -m space --focus $(yabai -m query --displays --display | jq -er '.spaces[0]')
+alt - 2 : yabai -m space --focus $(yabai -m query --displays --display | jq -er '.spaces[1]')
+alt - 3 : yabai -m space --focus $(yabai -m query --displays --display | jq -er '.spaces[2]')
+alt - 4 : yabai -m space --focus $(yabai -m query --displays --display | jq -er '.spaces[3]')
+alt - 5 : yabai -m space --focus $(yabai -m query --displays --display | jq -er '.spaces[4]')
+alt - 6 : yabai -m space --focus $(yabai -m query --displays --display | jq -er '.spaces[5]')
+alt - 7 : yabai -m space --focus $(yabai -m query --displays --display | jq -er '.spaces[6]')
+
+# move windows in current display
+shift + alt - h : yabai -m window --warp west
+shift + alt - j : yabai -m window --warp south
+shift + alt - k : yabai -m window --warp north
+shift + alt - l : yabai -m window --warp east
+
+# shift + alt - z : yabai -m window --space prev && yabai -m space --focus prev
+# shift + alt - x : yabai -m window --space recent && yabai -m space --focus recent
+# shift + alt - c : yabai -m window --space next && yabai -m space --focus next
+#
+# fn + alt - 1 : yabai -m window --space $(yabai -m query --displays --display | jq -er '.spaces[0]') && yabai -m space --focus $(yabai -m query --displays --display | jq -er '.spaces[0]')
+# fn + alt - 2 : yabai -m window --space $(yabai -m query --displays --display | jq -er '.spaces[1]') && yabai -m space --focus $(yabai -m query --displays --display | jq -er '.spaces[1]')
+# fn + alt - 3 : yabai -m window --space $(yabai -m query --displays --display | jq -er '.spaces[2]') && yabai -m space --focus $(yabai -m query --displays --display | jq -er '.spaces[2]')
+# fn + alt - 4 : yabai -m window --space $(yabai -m query --displays --display | jq -er '.spaces[3]') && yabai -m space --focus $(yabai -m query --displays --display | jq -er '.spaces[3]')
+# fn + alt - 5 : yabai -m window --space $(yabai -m query --displays --display | jq -er '.spaces[4]') && yabai -m space --focus $(yabai -m query --displays --display | jq -er '.spaces[4]')
+# fn + alt - 6 : yabai -m window --space $(yabai -m query --displays --display | jq -er '.spaces[5]') && yabai -m space --focus $(yabai -m query --displays --display | jq -er '.spaces[5]')
+# fn + alt - 7 : yabai -m window --space  $(yabai -m query --displays --display | jq -er '.spaces[6]') && yabai -m space --focus $(yabai -m query --displays --display | jq -er '.spaces[6]')
