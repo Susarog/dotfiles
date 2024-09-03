@@ -80,7 +80,7 @@ outer.right =      12
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
 # You can uncomment the following lines to open up terminal with alt + enter shortcut (like in i3)
-cmd-shift-t = 'exec-and-forget alacritty'
+cmd-ctrl-t = 'exec-and-forget alacritty'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 alt-slash = 'layout tiles horizontal vertical'
