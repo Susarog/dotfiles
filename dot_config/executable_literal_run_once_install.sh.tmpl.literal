@@ -1,0 +1,89 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#! /bin/bash
+
+# MacOS dots
+# installing brew
+echo "Installing brew"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+(
+	echo
+	echo 'eval "$(/opt/homebrew/bin/brew shellenv)"'
+) >>$HOME/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+brew update
+
+echo "Installing Brew Taps"
+# brew taps
+brew tap koekeishiya/formulae
+brew tap FelixKratz/formulae
+brew tap homebrew/cask-fonts
+
+echo "Installing Brew Cask Apps"
+# cask installs
+brew install --cask alacritty
+brew install --cask font-jetbrains-mono-nerd-font
+brew install --cask raycast
+brew install --cask arc
+brew install --cask karabiner-elements
+brew install --cask nikitabobko/tap/aerospace
+
+# brew installs
+
+echo "Installing Brew CLI Apps"
+brew install chezmoi
+brew install git
+brew install starship
+brew install borders
+brew install koekeishiya/formulae/yabai
+brew install tmux
+brew install tpm
+brew install neovim
+brew install lazygit
+brew install fastfetch
+brew install lazydocker
+brew install koekeishiya/formulae/skhd
+brew install httpie
+brew install htop
+brew install fzf
+brew install go
+brew install jq
+brew install tree
+brew install xclip
+brew install xsel
+brew install ripgrep
+
+#remove prompt from opening shell
+touch ~/.hushlogin
+
+# Dock and system settings
+echo "Overwriting MacOS settings"
+defaults write com.apple.dock "autohide" -bool "true"
+defaults write com.apple.dock "mru-spaces" -bool "false"
+defaults write -g NSRequiresAquaSystemAppearance -bool "false"
+killall Dock
+
+#Trackpad settings
+defaults write com.apple.AppleMultitouchTrackpad "TrackpadThreeFingerTapGesture" -int "0"
+defaults write com.apple.AppleMultitouchTrackpad "TrackpadRightClick" -int "1"
+defaults write com.apple.AppleMultitouchTrackpad "Clicking" -int "1"
+defaults write com.apple.AppleMultitouchTrackpad "TrackpadThreeFingerHorizSwipeGesture" -int "2"
+defaults write -g com.apple.trackpad.scaling 0.875
+
+#keyboard settings
+defaults write NSGlobalDomain KeyRepeat 1
+defaults write NSGlobalDomain InitialKeyRepeat 15
+
+#add personal dotfiles with chezmoi
+echo "Copying personal dotfiles over"
+chezmoi init --apply https://github.com/Susarog/dotfiles.git
+
+# manually start services with prompts
+echo "To utilize the CASK apps, you will first need to allow accessibility permissions"
+read -p "Once you are done enter press enter to continue:" _
+echo "Finally, manually start services installed by copying the service you want:"
+echo 'skhd: "skhd --start-service"'
+echo 'yabai: "brew services start yabai"'
+echo 'borders: "brew services start borders"'
+EOF
+{{ end -}}
