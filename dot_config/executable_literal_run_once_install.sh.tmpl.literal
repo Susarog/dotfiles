@@ -15,17 +15,14 @@ brew update
 
 echo "Installing Brew Taps"
 # brew taps
-brew tap koekeishiya/formulae
-brew tap FelixKratz/formulae
 brew tap homebrew/cask-fonts
 
 echo "Installing Brew Cask Apps"
 # cask installs
-brew install --cask alacritty
+brew install --cask ghostty
 brew install --cask font-jetbrains-mono-nerd-font
 brew install --cask raycast
-brew install --cask arc
-brew install --cask karabiner-elements
+brew install --cask zen
 brew install --cask nikitabobko/tap/aerospace
 brew install --cask httpie
 
@@ -36,14 +33,12 @@ brew install chezmoi
 brew install git
 brew install starship
 brew install borders
-brew install koekeishiya/formulae/yabai
 brew install tmux
 brew install tpm
 brew install neovim
 brew install lazygit
 brew install fastfetch
 brew install lazydocker
-brew install koekeishiya/formulae/skhd
 brew install httpie
 brew install htop
 brew install fzf
@@ -53,6 +48,9 @@ brew install tree
 brew install xclip
 brew install xsel
 brew install ripgrep
+
+npm install -g @mermaid-js/mermaid-cli tree-sitter-cli
+brew install gs tectonic imagemagick fd luarocks rg 
 
 #remove prompt from opening shell
 touch ~/.hushlogin
@@ -83,8 +81,7 @@ chezmoi init --apply https://github.com/Susarog/dotfiles.git
 echo "To utilize the CASK apps, you will first need to allow accessibility permissions"
 read -p "Once you are done enter press enter to continue:" _
 echo "Finally, manually start services installed by copying the service you want:"
-echo 'skhd: "skhd --start-service"'
-echo 'yabai: "brew services start yabai"'
 echo 'borders: "brew services start borders"'
+echo 'aerospace: run it as an application'
 EOF
 {{ end -}}
